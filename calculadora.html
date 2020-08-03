@@ -1,0 +1,119 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link href="calculadora.css" rel="stylesheet" />
+<head>
+    <body>
+        <h1>Calculadora</h1>
+         <div id="calculadora">
+             <div>
+                <div id="tela"></div>
+             </div>
+             <div id="botoes">
+                <div>
+                    <button class="botaoNumero" value="1">1</button>
+                    <button class="botaoNumero" value="2">2</button>
+                    <button class="botaoNumero" value="3">3</button>
+                    <button class="botaoOperacao" value="limpar">limpar</button>
+                </div>
+                <div>
+                    <button class="botaoNumero" value="4">4</button>
+                    <button class="botaoNumero" value="5">5</button>
+                    <button class="botaoNumero" value="6">6</button>
+                    <button class="botaoOperacao" value="+">+</button>
+                </div>
+                <div>
+                    <button class="botaoNumero" value="7">7</button>
+                    <button class="botaoNumero" value="8">8</button>
+                    <button class="botaoNumero" value="9">9</button>
+                    <button class="botaoOperacao" value="-">-</button>
+                </div>
+                <div>
+                    <button class="botaoNumero" value="0">0</button>
+                    <button class="botaoOperacao" value="*">*</button>
+                    <button class="botaoOperacao" value="/">/</button>
+                    <button class="botaoOperacao" value="=">=</button>
+                </div>
+             </div>  
+         </div>  
+         <script>
+             let botoesNumero = document.getElementsByClassName('botaoNumero');
+             botoesNumero[0].onclick = botaoNumeroClick;
+             botoesNumero[1].onclick = botaoNumeroClick;
+             botoesNumero[2].onclick = botaoNumeroClick;
+             botoesNumero[3].onclick = botaoNumeroClick;
+             botoesNumero[4].onclick = botaoNumeroClick;
+             botoesNumero[5].onclick = botaoNumeroClick;
+             botoesNumero[6].onclick = botaoNumeroClick;
+             botoesNumero[7].onclick = botaoNumeroClick;
+             botoesNumero[8].onclick = botaoNumeroClick;
+             botoesNumero[9].onclick = botaoNumeroClick;
+
+             let botoesOperacao = document.getElementsByClassName('botaoOperacao');
+             botoesOperacao[0].onclick = botaoOperacaoClick;
+             botoesOperacao[1].onclick = botaoOperacaoClick;
+             botoesOperacao[2].onclick = botaoOperacaoClick;
+             botoesOperacao[3].onclick = botaoOperacaoClick;
+             botoesOperacao[4].onclick = botaoOperacaoClick;
+             botoesOperacao[5].onclick = botaoOperacaoClick;
+             
+
+             let operacaoUtilizada = "";
+             let primeiroNumero = "";
+             let segundoNumero = "";
+             
+             function botaoNumeroClick(event) {
+                let numero = event.target.value;
+                numeroTela(`${primeiroNumero}${numero}`);
+
+             }
+             function botaoOperacaoClick () {
+                let operacao = event.target.value;
+                realizarOperacao(operacao)
+
+             }
+
+             function numeroTela(numero) {
+                 let tela = document.getElementById("tela");
+                 primeiroNumero = numero;
+                 tela.innerHTML = primeiroNumero;
+             }
+
+             function realizarOperacao(operacao){
+                if (operacao === "=") {
+                    let resultado;
+                    if (operacaoUtilizada === "+")
+                    resultado = parseInt(segundoNumero) + parseInt(primeiroNumero);
+
+                    if (operacaoUtilizada === "-")
+                    resultado = parseInt(segundoNumero) - parseInt(primeiroNumero);
+
+                    if (operacaoUtilizada === "*")
+                    resultado = parseInt(segundoNumero) * parseInt(primeiroNumero);
+
+                    if (operacaoUtilizada === "/")
+                    resultado = parseInt(segundoNumero) / parseInt(primeiroNumero);
+
+                    numeroTela(resultado);
+
+                } else {
+                    if (operacao === "limpar"){
+                        location.reload();
+                    }
+                    segundoNumero = primeiroNumero; 
+                    numeroTela("");
+                    operacaoUtilizada = operacao; 
+                }
+                
+
+             }
+         </script> 
+    </body>
+</head>
+
+
+</html>
